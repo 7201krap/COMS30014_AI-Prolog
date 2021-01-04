@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ae0704ff-308b-42eb-9244-fdb24a0fa018" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1jpcli3qrERI7cITDFVIHXGZyO4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae0704ff-308b-42eb-9244-fdb24a0fa018" name="Default Changelist" comment="" />
+      <created>1604504627620</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604504627620</updated>
+      <workItem from="1604504631802" duration="114000" />
+      <workItem from="1605050293751" duration="7000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.pl" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2000" y="217" key="#Plugins" timestamp="1604504745172">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2000" y="217" key="#Plugins/45.23.1395.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1604504745172" />
+    <state x="1864" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604504718806">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1864" y="213" key="#com.intellij.execution.impl.EditConfigurationsDialog/45.23.1395.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1604504718806" />
+    <state x="1901" y="190" key="SettingsEditor" timestamp="1604504699015">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="1901" y="190" key="SettingsEditor/45.23.1395.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1604504699015" />
+    <state x="2065" y="256" width="670" height="675" key="run.anything.popup" timestamp="1604504707988">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2065" y="256" width="670" height="675" key="run.anything.popup/45.23.1395.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1604504707988" />
+    <state x="2065" y="258" width="670" height="676" key="search.everywhere.popup" timestamp="1604504729393">
+      <screen x="1440" y="23" width="1920" height="1057" />
+    </state>
+    <state x="2065" y="258" width="670" height="676" key="search.everywhere.popup/45.23.1395.877/1440.23.1920.1057@1440.23.1920.1057" timestamp="1604504729393" />
+  </component>
+</project>

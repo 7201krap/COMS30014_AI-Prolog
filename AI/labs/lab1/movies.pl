@@ -139,7 +139,7 @@ solo(M, A) :-
 
 % multi_role(M,A).	A played two different roles in movie M
 multi_role(M,A) :-
-  plays(M, A, R1), plays(M, A, R2), R1@>R2.
+  plays(M, A, R1), plays(M, A, R2), R1 @> R2.
 
 % veteran(A)	A played in two movies more than 25 years apart
 veteran(A) :-
@@ -148,12 +148,11 @@ veteran(A) :-
   Y1-Y2>25.
 
 % EXTENSION
-roles(M,A,Rs) :-
-  bagof(R,plays(M,A,R),Rs).
+% roles: Rs is the list of all roles played by actor/actress A in movie M
+roles(M,A,Roles) :-
+  bagof(R,plays(M,A,R),Roles).
 
-dual_part_(M,A,Rs) :-
-  roles(M,A,[R1,R2]).
-
+% multi_role(M,A) in way that is guaranteed not to return duplicate answers
 multi_role_(M,A,[R1,R2|Rs]) :-
   roles(M,A,[R1,R2|Rs]).
 
@@ -170,6 +169,13 @@ movie(covid19, 2019).
 director(covid19, oliver_ray).
 actor(covid19, ruairi_fox, the_hero).
 actor(covid19, ruairi_fox, the_villain).
+
+movie(jenna_and_jayden, 2020).
+director(college_green, ste_harris).
+actor(cg_love, nayeon_song, jenna).
+actor(cg_love, nayeon_song, ambassador).
+actor(cg_love, jinhyun_park, jayden).
+actor(cg_love, jinhyun_park, jason).
 
 movie('2nd_wave', 2020).
 director('2nd_wave', oliver_ray).

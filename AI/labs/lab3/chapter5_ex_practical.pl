@@ -60,6 +60,7 @@ mul([H1|T1], [H2|T2], R, Ans) :-
 dot(List1, List2, A) :-
   mul(List1, List2, 0, A).
 
+%
 dot2([], [], 0).
 dot2([H1|T1], [H2|T2], R) :-
   dot2(T1, T2, R1),

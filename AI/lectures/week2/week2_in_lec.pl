@@ -1,3 +1,12 @@
+% important note:
+% bagof(Child, Mother ^ descend(Mother,Child),List).
+% This indicates
+% give me a list of all the values of Child such that
+% descend(Mother,Child), and put the result in a list, but don't worry about
+% generating a separate list for each value of Mother.
+% 쉽게 생각해서 Mother 은 신경쓰지 않고 List 를 구해준다.
+% 이렇게 하면 findall(Child, descend(Mother,Child),List). 이랑 똑같음.
+
 % closed-world example (assume false facts for which there is no evidence of truth)
 happy_(diego) :- \+ sees(diego, cheese_sandwich).
 
@@ -6,7 +15,6 @@ sees(random_guy, something).
 
 % facts (evidence) does contain a thing related to cheese_sandwich
 % sees(diego, cheese_sandwich).
-
 
 
 % ancestor relationship
@@ -24,24 +32,14 @@ ancestor(X, Y) :- father(X, Z), ancestor(Z, Y).
 % bagof/3
 % built-in predicate bagof(+Template, +Goal, -Bag) is used to collect a list of Bag of all the itmes Template that statisfy some goal.
 % Bag 의 원소는 중복될 수 있다.
-% usage : ?- bagof(Person, likes_(Person, pizza), Bag).
-% usage : ?- bagof(whoLikesPizza(Person), likes_(Person, pizza), Bag).
+% usage : ?- bagof(Person, likes(Person, pizza), Bag).
 
-% But +Template Person 이 꼭 변수일 필요는 없다 !! 그냥 whoLikesPizza(Person) 이런식으로
-% 해도 variable 이 함수 안에 들어있기만 하면 상관이 없음. whoLikesPizza(Person) 이런식으로
-% 된다면 Bag 에도 whoLikesPizza(Person) 이런 형식으로 결과가 도출된다.
-
-% But Object doesn’t have to be a variable,
-% it may be a complex term that just contains a variable that also occurs in Goal .
-% For example, we might decide that we want to build a new predicate fromMartha/1
-% that is true only of descendants of Martha.
-
-likes_(Human, pizza) :-
-  italian(Human).
-
-likes_(mary,  pizza).
-likes_(marco, pizza).
-italian(marco).
+% likes(Human1, Human2, pizza) :-
+%   italian(Human1, Human2).
+%
+% likes(mary, jason,  pizza).
+% likes(marco, jenna, pizza).
+% italian(marco, gale).
 
 
 
@@ -71,6 +69,7 @@ rich(harry).
 % Another difference between bagof/3 and findall/3 is
 % ** the extent of backtracking done ** before the third parameter (List).
 
+% uncomment this section
 believes(john,  likes(mary, pizza)).
 believes(frank, likes(mary, fish)).
 believes(john,  likes(mary, apples)).
@@ -83,9 +82,6 @@ believes(frank, likes(mary, meat)).
 % bagof (usage1) 를 했을때는 john 이 좋아하는거 따로, frank 가 좋아하는거 따로 분리해서 출력.
 % findall (usage2) 을 했을때는 john 이 좋아하는 것과 frank 가 좋아하는 것을 분리해주지 않는다.
 % 그냥 한번에 출력함.
-% 만약에 mary 대신에 random 한 이름 jason 으로 하면
-% bagof   --> false 를 출력하고
-% findall --> [] 를 출력한다.
 
 
 

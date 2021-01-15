@@ -1,3 +1,6 @@
+% How to run
+% swipl ./ailp.pl lab identity
+
 % actor(-Actor)	return each possible secret actor identity (e.g. 'Billy Bob Thornton')
 % --> actor(A).
 

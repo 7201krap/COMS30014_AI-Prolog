@@ -36,6 +36,7 @@
 
 % -----------------------------------------------------------------------------
 % 실행방법
+% swipl ./ailp.pl lab search
 % start., click run on the website, shell., setup.
 % run search_bf in the terminal.
 
@@ -79,6 +80,7 @@ search_bf([Pos:RPath|Queue],Visited,Path) :-
   write("\n"),
 
   % Children(새로 생성된것) 을 항상 Queue 뒤에다가 넣음.
+  % For DFS: append(Children, Stack, NewQueue)
   append(Queue,Children,NewQueue),
   write("\n"),
   write("New Queue: "),

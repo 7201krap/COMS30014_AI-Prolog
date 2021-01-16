@@ -3,10 +3,16 @@ of a simple Prolog database, in this case a movie database (see below).
 Modified from exercises found on the web. Not sure who first made them.  */
 
 /* DATABASE
-
+    % 영화 M 가 Y 년도에 발표되었다.
     movie(M, Y) <- movie M came out in year Y
+
+    % 영화 M 는 영화감독 D 에 의해서 만들어졌다.
     director(M, D) <- movie M was directed by director D
+
+    % 남자 주인공 A 가 영화 M 에서 역할 R 을 맡았다.
     actor(M, A, R) <- actor A played role R in movie M
+
+    % 남자 주인공 A 가 영화 M 에서 역할 R 을 맡았다.
     actress(M, A, R) <- actress A played role R in movie M
 
 */
@@ -27,6 +33,7 @@ Part 1: Write queries to answer the following questions.
     --> movie(M, Y), Y > 1990.
 
     e. Find an actor who has appeared in more than one movie.
+    --> actor(M1, A, _), actor(M2, A, _), M1 \= M2.
     --> actor(M1, A, _), actor(M2, A, _), M1 @> M2.
 
     f. Find a director of a movie in which Scarlett Johansson appeared.
@@ -59,11 +66,14 @@ Part 2: Add rules to the database to do the following,
 
     % c. same_year(M1, M2) <- the movies are released in the same year.
     same_year(M1, M2) :-
-      movie(M1, Y), movie(M2, Y), M1 \== M2.
+      movie(M1, Y), movie(M2, Y), M1 @> M2.
+      % movie(M1, Y), movie(M2, Y), M1 \= M2. % 이것도 맞다.
 
     % d. co_star(A1, A2) <- the actor/actress are in the same movie.
     co_star(A1, A2) :-
-      actor(M, A1, _), actor(M, A2, _) ; actor(M, A1, _), actress(M, A2, _) ; actress(M, A1, _), actress(M, A2, _).
+      actor(M, A1, _),   actor(M, A2, _), A1 @> A2;
+      actor(M, A1, _),   actress(M, A2, _), A1 @> A2;
+      actress(M, A1, _), actress(M, A2, _), A1 @> A2.
 */
 
 /** <examples> (Remove these if you want to give the exercises to students!)
@@ -104,7 +114,8 @@ released_after(M,Y) :-
   movie(M,Y2), Y<Y2.
 
 % b. released_before(M, Y) <- the movie was released before the given year.
-released_before(M,Y) :- movie(M,Y2), Y>Y2.
+released_before(M,Y) :-
+  movie(M,Y2), Y>Y2.
 
 % c. same_year(M1, M2) <- the movies are released in the same year.
 same_year(M1, M2) :-
@@ -115,6 +126,15 @@ co_star(A1, A2) :-
   (actor(M, A1, _); actress(M, A1, _)),
   (actor(M, A2, _); actress(M, A2, _)),
   A1@>A2.
+
+  /* DATABASE
+
+      movie(M, Y) <- movie M came out in year Y
+      director(M, D) <- movie M was directed by director D
+      actor(M, A, R) <- actor A played role R in movie M
+      actress(M, A, R) <- actress A played role R in movie M
+
+  */
 
 % PART 3
 % plays(M,A,R).	A is an actor or actress who played a role R in the movie M
@@ -135,7 +155,7 @@ cameo(M, A):-
 
 % solo(M,A). A was the only person who played in movie M
 solo(M, A) :-
-  plays(M, A, _), forall(plays(M, B, _), A = B).
+  plays(M, A, _), forall(plays(M, B, _), A == B).
 
 % multi_role(M,A).	A played two different roles in movie M
 multi_role(M,A) :-

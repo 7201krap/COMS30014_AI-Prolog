@@ -23,7 +23,7 @@
 % --> complex term (loves/2)
 
 % 'loves(Vincent,mia)'
-% --> variable
+% --> atom
 
 % Butch(boxer)
 % --> not a term
@@ -57,6 +57,7 @@
 % < EX 1-3 >
 % 7 predicates = woman/1 + man/1 + person/1 + loves/2 + father/2
 % 7 clauses = 3 facts + 4 rules
+
 % 3 facts
 % woman(vincent).
 % woman(mia).

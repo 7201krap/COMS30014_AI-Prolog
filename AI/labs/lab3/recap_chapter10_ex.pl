@@ -81,21 +81,33 @@ likes_(mary, X) :-
 enjoys(vincent, X) :- big_kahuna_burger(X), !, fail. % this cut(!) blocks access to the second rule.
 enjoys(vincent, X) :- burger(X).
 
-burger(X) :- big_mac(X).
-burger(X) :- big_kahuna_burger(X).
-burger(X) :- whopper(X).
+% !!! IMPORTANT !!!
+neg(Goal) :-
+  Goal,!,fail.  % 만약에 Goal 이 참이라면 여기로 들어와서 fail 하게 되고
+neg(Goal).      % 만약에 Goal 이 참이 아니라면 자동으로 이쪽으로 넘어와서 그냥 단순 명제가 되니까 참을 반환한다.
+
+% 이것을 한문장으로 말하면
+% --> For any Prolog goal, neg(Goal) will succeed precisely if Goal does not succeed.
+
+% second example
+enjoys_(vincent, X) :-
+  burger(X),
+  \+ big_kahuna_burger(X).
+
+% third example
+enjoys__(vincent, X) :-
+  burger(X),
+  neg(big_kahuna_burger(X)).
+
+% rules and database 
+burger(X) :-
+  big_mac(X).
+burger(X) :-
+  big_kahuna_burger(X).
+burger(X) :-
+  whopper(X).
 
 big_mac(a).
 big_mac(c).
 big_kahuna_burger(b).
 whopper(d).
-
-% !!! IMPORTANT !!!
-neg(Goal) :-
-  Goal,!,fail.
-neg(Goal).
-% For any Prolog goal, neg(Goal) will succeed precisely if Goal does not succeed.
-
-enjoys_(vincent, X) :-
-  burger(X),
-  \+ big_kahuna_burger(X).

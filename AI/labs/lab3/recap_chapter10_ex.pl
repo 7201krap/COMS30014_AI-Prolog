@@ -99,7 +99,7 @@ enjoys__(vincent, X) :-
   burger(X),
   neg(big_kahuna_burger(X)).
 
-% rules and database 
+% rules and database
 burger(X) :-
   big_mac(X).
 burger(X) :-

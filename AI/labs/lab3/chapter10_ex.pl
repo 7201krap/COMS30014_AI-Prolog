@@ -40,6 +40,12 @@ j(1).
 j(2).
 j(3).
 
+% very simple example
+q_(X) :- i_(X), ! .
+i_(1).
+i_(2).
+i_(3).
+
 % 10-2
 % We need to insist that Prolog should never try both clauses, and the following code does this:
 max(X,Y,Y)  :-

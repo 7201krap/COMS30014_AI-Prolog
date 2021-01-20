@@ -28,31 +28,50 @@
 % Here, we are going to use this functor as: actor_has_link(+L, -A)
 actor_has_link(L,A) :-
   actor(A),
-  wp(A,WT),
+  wp(A,WT), % return WT wp(+A,-WT)
   wt_link(WT,L).  % L contains any link contained in the given WikiText (WT)
 
 % eliminate(+As, -A)
-eliminate([A], A) :-
+% This is a base case. 
+eliminate([Last_viableAs], Final_answer) :-
+  write("\n< Entering eliminate for final answer >\n"),
+
+  % Final_answer is not yet selected
+
+  Last_viableAs = Final_answer, % Final_answer is now unified with Last_viableAs
+  % This indicates that we now know what is Final_answer
+
   write('\nFinal anwer: '),
-  write(A),
+  write(Final_answer),
   !. % base case
 
 eliminate(As, A)  :-
-  write("\nEntering eliminate\n"),
+  write("\n< Entering eliminate >\n"),
 
-  % agent_ask_oracle(oscar,o(1),link,L) to gain a link L that belongs to the secret actor.
-  % This link can be used to eliminate certain actors until eventually there is only one possible actor left.
-  % This means that we need to use agent_ask_oracle many times.
+  % agent_ask_oracle(oscar,o(1),link,L) to gain a link L that belongs to the
+  % secret actor. This link can be used to eliminate certain actors until
+  % eventually there is only one possible actor left. This means that we need
+  % to use agent_ask_oracle many times.
   agent_ask_oracle(oscar,o(1),link,L),
 
-  % include(:Goal, +List1, ?List2)
+  write("\nWhat is link?: \n"),
+  write(L),
+  write("\n"),
+
+  % 해석: actor_has_link(L) (사실 actor_has_link(L, As) 로 변환된다)
+  % 여기에 만족되는 모든 후보를 ViableAs 에 넣는다.
+  % 현재 actor_has_link(L, A) 이런 형태이다. 즉 한번에 하나의 후보를 받을 수 있다.
+  % 그러나, include/3 를 쓰면 한번에 하나의 후보를 체크하여 가능한 모든 actor 을
+  % ViableAs 에 넣는다.
+  % 결국 제일 마지막에는 ViableAs 에 하나의 actor가 남을 것이다.
   include(actor_has_link(L), As, ViableAs), % viable : 실행가능한
 
   write("\nPossible Answer(Actor) after elimination: "),
-  write(As),
+  write(ViableAs),
   write("\n"),
 
-  eliminate(ViableAs, A).  % 여기에서 Answer(Actor) 를 찾는다. base case 를 이용하여 찾을 수 있다.
+  eliminate(ViableAs, A).
+  % 여기에서 Answer(Actor) 를 찾는다. base case 를 이용하여 찾을 수 있다.
 
 
 find_identity(A) :-
@@ -68,9 +87,9 @@ find_identity(A) :-
 % This is a helper predicate and should find all the links for a particular actor
 % Create a predicate that finds all the links on a given actors wikipedia page.
 % find_links_by_actor(+A,-L)
-find_links_by_actor(A,L) :-
+find_links_by_actor(A,Links) :-
   wp(A, WT),
-  findall(Links, wt_link(WT,Links), L).
+  findall(Link, wt_link(WT,Link), Links).
 % 해석하면,
 % 1. wp(A, WT) 를 하면 WT 에 모든 WikiText 가 담긴다.
 % 2. 그 WT 를 이용해서 finds all the links on a given actors wikipedia page

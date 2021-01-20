@@ -15,17 +15,14 @@ nu_2(X, Y) :-
 % 3
 nu_3(X,X) :-
 	!,fail.
-nu_3(_,_).
+nu_3(_,_).  % 같지만 않으면 다 된다.
 
 % 4
 unifiable([H | List1], Term, List2) :-
-  write('First'),
-  \+ H = Term, !,
-  write('Enter Cut'),
+  \+ (H = Term), !,
   unifiable(List1, Term, List2).
 
 unifiable([H | List1], Term, [H | List2]) :-
-  write('Second'),
   unifiable(List1, Term, List2).
 
 unifiable([],Term,[]).

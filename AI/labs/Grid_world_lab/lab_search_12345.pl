@@ -14,7 +14,7 @@
 %             map_adjacent(Pos, AdjPos, empty)), AdjList).
 
 % 5. Find the OID of the oracle
-% --> map_adjacent(p(8,5), AdjPos, o(1)).
+% --> ailp_grid_size(N), between(1,N,X), between(1,N,Y), map_adjacent(p(X,Y),_,o(ID)), !.
 
 % -----------------------------------------------------------------------------
 % < Possible Queries >
@@ -60,7 +60,14 @@ search_bf([Pos:RPath|_],_,Path) :-
   %
   complete(Pos), reverse([Pos|RPath],Path), !.
 
+% search_bf(NewQueue,[Pos|Visited],Path).
 search_bf([Pos:RPath|Queue],Visited,Path) :-
+
+  write("\n"),
+  write("Path: "),
+  write(Path),
+  write("\n"),
+
   % NewPos: 갈수있는 새로운 좌표
   % Pos   : 현재(Parent) 좌표
   findall(NewPos:[Pos|RPath],
@@ -80,7 +87,8 @@ search_bf([Pos:RPath|Queue],Visited,Path) :-
   write("\n"),
 
   % Children(새로 생성된것) 을 항상 Queue 뒤에다가 넣음.
-  % For DFS: append(Children, Stack, NewQueue)
+  % For DFS: append(Children, Queue, NewQueue)
+  % DFS is not actually a queue; it is a stack.
   append(Queue,Children,NewQueue),
   write("\n"),
   write("New Queue: "),

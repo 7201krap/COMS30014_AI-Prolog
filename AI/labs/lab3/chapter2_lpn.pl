@@ -23,5 +23,4 @@ loves(marcellus, mia).
 
 jealous(A, B) :-
   loves(A, C),
-  loves(B, C),
-  A @> B.
+  loves(B, C).

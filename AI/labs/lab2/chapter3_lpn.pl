@@ -35,5 +35,5 @@ numeral(succ(X)) :-
 %% example 4
 
 add(0,Y,Y). % base case
-add(succ(X),Y,succ(Z)) :-
-  add(X,Y,Z).
+add(succ(X), Y, succ(Z)) :-
+  add(X, Y, Z).
